@@ -1,0 +1,56 @@
+﻿08 Vorbereitung Lesen
+
+
+Construction-Integration Modell
+Das Konstruktions-Integrations-Modell ist ein psychologisches Modell des Textverstehens.
+Kintschs (1988) Construction-Integration (Cl) -Modell ist eines der erfolgreichsten Modelle des Textverständnisses. Obwohl das Modell nicht allgemein anerkannt ist, gibt es einen ziemlich breiten Konsens darüber, dass das CI-Modell fast alle grundlegenden Prozesse erfasst, die für ein erfolgreiches Verständnis erforderlich sind.
+Das CI-Modell schlägt vor, dass ein Text in zwei interaktiven Phasen erfasst wird. Während der Bauphase gelangt die eingehende Textbasis in den Arbeitsspeicher und ruft potenziell relevante Informationen aus dem Langzeitspeicher ab. Diese Verarbeitungsstufe erfolgt schnell und automatisch. Während der Integrationsphase nimmt das Verständnissystem die neue Information mit dem vorher existierenden Modell des Diskurses auf. 
+Die Integrationsphase ist vergleichsweise langsam und ressourcenintensiv, da das Verständnissystem die in der Konstruktionsphase aktivierte Information zusammenführt und nur die Information integriert, die für die gegenwärtige Situation im Diskursmodell relevant ist. Das CI-Modell bietet einen Rahmen, um die involvierten Prozesse zu verstehen, wenn Informationen aktiviert, gehemmt und in ein kohärentes Situationsmodell integriert werden.
+In den meisten Fällen braucht man zum Sprachverständnis nicht nur das Verstehen von einzelnen Wörtern oder Sätzen, es braucht eine Integration der Bedeutung von Wörtern oder Sätzen im Kontext (weiteres Verstehen). Das Textverständnis ist ein komplexer kognitiver Vorgang. 
+Beispiel: 
+Jane hat Panik, da ihr Miete fällig ist, aber sie kein Geld auf der Bank hat. 
+Als sie in die Küche geht erinnert sie sich, dass sie den Rücklagescheck zurückerstatten muss. Nachdem sie sich angezogen hat, nimmt sie den Scheck und fährt zur Bank.
+→ man muss die Orthographie und die Symbolik verstehen und die syntaktische Struktur sicherstellen.
+Der Leser muss den ganzen Sinn des Textes erfassen, also Bezüge herstellen. Die Bezüge werden zwischen den einzelnen Aufzählungen oben nicht explizit genannt. Die Leser müssen die Beziehungen anhand ihres Weltwissens deuten. 
+Janes Ziel, einen Weg zu finden die Miete bezahlen zu können, ist ebenfalls nicht im Text erwähnt. 
+(... sie fährt zur Bank → Interpretation: Weg Ziel zu erreichen)
+Leser müssen eine Verbindung zwischen dem Repräsentierten und dem Weg herstellen können, sie müssen sich des Ziels bewusst sein. Leser müssen Verbindungen kennzeichnen können um Schlussfolgerungen zu ziehen. Leser müssen die Informationen auf dem Schirm haben, um zu überprüfen ob sie kohärent sind.
+
+Surface Code
+Der Surface Code ist die wörtliche Darstellung der im Text benutzen Formulierung. Sie ist außerdem kurzlebig. Kintsch gab den Teilnehmern Texte zu lesen und anschließend machten sie einen Erinnerungstest um die verschiedenen Stufen von Textverständnis einzuschätzen. 
+Dabei fand er heraus, dass die Erinnerung der Details schnell zurückging, die Erinnerung des Textverständnis blieben jedoch auch noch nach einigen Tagen bestehen. 
+Es gibt jedoch Beispiele bei denen der Surface Form langanhaltend ist. Dies ist der Fall, wenn beispielsweise der Text Witze oder Beleidigungen beinhaltet.
+
+Textbasis
+Textbasis ist die Ausgangsdarstellung der explizit genannten Ideen.
+Die Texte sind selten explizit genug beschrieben, um die beschriebene Situation zu verstehen.  
+„The boy gave his mother a cupcake“
+„give“ = bestimmte Argumentationsstruktur von Hauptsätzen; verschiedene Funktionen währender Aktion von Geben 
+„boy“ ist der Stellvertreter der Aktion 
+„mother“ ist der Rezipient 
+„cupcake“ ist der patient 
+
+Situationsmodell
+Wird auch als mentales, Diskurs- oder Situationsmodell bezeichnet.
+Es ist die Darstellung über das, um was es im Text überhaupt geht. 
+Die gemischten Infos, die in der Textbasis verschlossene sind, werden im Weltwissen des Verstehenden wiedergefunden.  Diese Infos sind nicht explizit im Text genannt. 
+Das Situationsmodell ist eine Darstellungsebene, die gleichbedeutend mit dem vollständigen Verständnis eines Textes ist. 
+
+Integrationsprozess
+Der Integrationsprozess übernimmt aus der Konstruktionsphase ein chaotisches Propositionennetzwerk, in dem Wichtiges, Unwichtiges und zum Teil auch Widersprüchliches miteinander verbunden ist. 
+1. Zusammenhängende Ereignisse die in verschiedene Dimensionen verwickelt sind, werden enger vernetzt im Gedächtnis, als zusammenhängende Ereignisse in weniger Dimensionen.
+2. Die Leichtigkeit, mit der Informationen in das bestehende Situationsmodell integriert werden, von der Anzahl der Dimensionen ab, in denen der eingehende Textinhalt mit dem unmittelbar vorhergehenden Inhalt übereinstimmt.
+→ Insgesamt, je mehr Überschneidungen zwischen dem eingehenden Inhalt und dem vorhandenen Zustand des Modells bestehen, desto leichter ist es, die neuen Informationen im Modell zu verstehen.
+Mehrere Studien von Zwaan belegen, dass die Leser während des Lesens mehrere Dimension überwachen.
+
+Konstruktionsphase
+In der Konstruktionsphase wird die Information des Textes in propositionaler Form extrahiert. Es entsteht ein propositionales Netzwerk, in dem die Propositionen miteinander über Argumentüberlappung verbunden sind. Dieses Netzwerk muss zunächst nicht vollständig verbunden sein. Das heißt, es kann mehrere kleine, voneinander unabhängige Netzwerke geben. Der Leser wird nun versuchen, ein kohärentes, also ein einheitliches, voll verbundenes Netzwerk herzustellen. Hierzu bedarf es in den meisten Fällen einer Vielzahl an Assoziationen und Inferenz (Schlussfolgerungen) aus dem Wissen des Lesers. 
+
+Textkohäsion
+Um einen Text zu verstehen, müssen Leser oft zusätzliche Verarbeitungsarbeit leisten, um herauszufinden, wie sich der eingehende Satz auf das bestehende Situationsmodell bezieht. Das heißt, sie müssen verarbeitet werden, um die Konsistenz des Textes zu erhalten, wenn neue Informationen eingehen.
+Der Leser kann bestrebt sein, die Kohärenz ihrer Darstellung eines Textes auf viele Arten zu erhalten. Sie können jeden eingehenden Satz mit den zuletzt entdeckten Sätzen verbinden (wie zuvor besprochen). Auf diese Weise ist der Leser in der Lage, lokale Kohärenz (z. B. McKoon & Ratcliff, 1992) in seinem Situationsmodell beizubehalten. Auf der anderen Seite können Leser versuchen, globale Kohärenz in ihrem Diskursmodell beizubehalten (z. B. Graesst: r, Singer & Trabasso, 1994). Das heißt, Leser verbinden jeden eingehenden Satz sowohl mit der lokalen Betrachtung des Situationsmodells als auch mit der globalen Struktur von das Modell (das Informationen über die Überprüfung des Textes, die übergeordneten Ziele der Charaktere und so weiter enthält).
+Neben der Verfolgung von Informationen, die zur Aufrechterhaltung der globalen Kohärenz benötigt werden, ist es klar, dass die Leser wie folgt handeln. Wenn es den Lesern nicht gelingt, globale Kohärenz in ihren Diskursmodellen aufrechtzuerhalten, können sie sich stattdessen auf die Aufrechterhaltung der lokalen Kohärenz konzentrieren. Wenn ein gegebener Text zu wenig lokale Kohärenz hat, wird er als völlig inkonsistent angesehen.
+Um eine globale und lokale Kohärenz zu erreichen, muss der Leser oft Details einfügen, die im Text nicht explizit dargestellt werden. Das heißt, der Leser muss Rückschlüsse auf die beschriebenen Ereignisse ziehen, um eine kohärente Darstellung des Textes zu erhalten. 
+Wenn sie zum Beispiel auf Sätze wie "Es war kalt an diesem Morgen" stoßen, „rutschte Joe auf dem Bürgersteig“, müssen die Leser daraus schließen, dass es Schnee oder Eis gegeben haben könnte, um zu einem kohärenten Diskursmodell zu gelangen. 
+
+

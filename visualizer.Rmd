@@ -1,0 +1,146 @@
+---
+title: "Feedback zu deinem Text"
+output:
+  pdf_document: default
+  html_notebook: default
+  html_document:
+    df_print: paged
+  word_document: default
+---
+
+```{r, echo = FALSE, message=FALSE, error=FALSE, warning=FALSE}
+library(tidytext)
+library(tidyverse)
+library(spacyr)
+library(igraph)
+library(ggraph)
+library(widyr)
+library(tm)
+```
+
+```{r Setup variables, echo = FALSE, message=FALSE, error=FALSE, warning=FALSE}
+# Language
+my_language = "de"
+
+# File path
+sample_file = "sample_texts/lesen02.txt"
+
+# Collapse stop words
+stopwords <- paste(stopwords(kind = my_language), 
+                   collapse = "|")
+
+# Lemma lookup table
+# https://github.com/michmech/lemmatization-lists
+lemma_lookup <- read_delim("lemmatization-de_noun.txt", delim = "\t")
+```
+
+
+```{r Setup project, echo=FALSE, message=FALSE, error=FALSE, warning=FALSE}
+# Read article as string
+sample_text <- readChar(sample_file, 
+                        file.info(sample_file)$size)
+
+# Parse text with spacy
+spacy_initialize(model = my_language)
+sample_text_parsed <- spacy_parse(sample_text, lemma = FALSE) 
+```
+
+```{r Get lemmas, echo=FALSE, message=FALSE, error=FALSE, warning=FALSE}
+# Filter nouns from dataset
+sample_filtered <- sample_text_parsed %>% 
+  filter(pos %in% c("NOUN", "PROPN"))
+
+# Get lemma from words
+lemmas <- sample_filtered %>% 
+  left_join(lemma_lookup, by = "token", copy = TRUE) %>%
+  mutate(
+    lemma = coalesce(lemma, token)
+  ) %>%
+  filter(!lemma %in% c("/", "–")) %>%
+  select(sentence_id, lemma)
+
+# Generate bigrams 
+sample_dataframe <- sample_text %>%
+  tibble(text = .)
+```
+
+## Dein Feedback
+
+Im Folgenden erhälst du ein visuelles Feedback zu deinem Text. Die schwarzen Punkte in dem Feedback stellen diejenigen Konzepte dar, die du in deinem Text häufig verwendet hast. Die Verbindungen zwischen diesen Konzepten zeigen an, ob Konzepte innerhalb von Sätzen miteinander verbunden hast. Verbindungen die dicker sind, hast du stärker in deinem Text miteinander verbunden. 
+
+### So kannst du das Feedback verwenden, um deinen Text zu verbessern
+
+* Fehlen wesentliche Konzepte in deinem Text? 
+* Hast du alle zentralen Konzepte in deinem Text miteinander verbunden? Wenn nicht, versuche dir zu überlegen, wie du diese Konzepte in deinem Text stärker verbinden könntest.
+* Sprichst du über Konzepte, die für das Thema deines Textes irrelevant sind? Wenn ja, versuche diese Textstellen aus deinem Text zu entfernen.
+
+
+```{r Add n-grams, echo=FALSE, message=FALSE, error=FALSE, warning=FALSE}
+get_n_gram <- function(n) {
+  sentences <- sample_dataframe %>%
+    unnest_tokens(sentences, text, token = "sentences") %>% 
+    mutate(sentence_id = 1:n())
+  
+  bigrams <- sentences %>% 
+    nest(sentences) %>%
+    mutate(
+      bigrams = data %>% map(~ unnest_tokens(., bigram, sentences,
+                                             token = "ngrams", n = n))
+    ) %>%
+    select(sentence_id, bigrams) %>%
+    unnest() %>%
+    mutate(remove = bigram %>% map_lgl(~ str_detect(., stopwords))) %>%
+    filter(remove != TRUE)
+  
+  popular_bigrams <- bigrams %>%
+    count(bigram) %>% 
+    arrange(desc(n)) %>%
+    filter(n > 2)
+  
+  return_values <- bigrams %>%
+    filter(bigram %in% popular_bigrams$bigram) %>%
+    select(-remove) %>%
+    rename(
+      lemma = bigram
+    )
+  
+  return(return_values)
+}
+
+bigrams  <- get_n_gram(2)
+trigrams <- get_n_gram(3)
+
+# Generate bigrams 
+lemmas <- lemmas %>%
+  rbind(bigrams) %>%
+  rbind(trigrams)
+```
+
+
+```{r Build graph, echo=FALSE, message=FALSE, error=FALSE, warning=FALSE}
+# Build word pairs
+pairs <- pairwise_count(lemmas, 
+                        item = lemma, 
+                        feature = sentence_id, 
+                        sort = TRUE) %>%
+  filter(n > 1)
+
+# Visualize
+(graph <- graph_from_data_frame(pairs) %>%
+  ggraph(layout = "fr") +
+  geom_edge_link(aes(edge_alpha = n, edge_width = n), 
+                 edge_colour = "cyan4") +
+  geom_node_point(size = 5) +
+  geom_node_text(aes(label = name), repel = TRUE, 
+                 point.padding = unit(0.2, "lines")) +
+  theme_void())
+```
+
+## Verbesserungsvorschläge
+
+* Versuche das Construction-Integration Modell stärker zu beschreiben. Bisher erwähnst du das Hauptkonzept des Texts kaum.
+* Du sprichst nicht über die Integrationsphase und die Konstruktionsphase. Geher stärker auf diese beiden Konzepte ein. 
+* Bei diesem Text solltest du auch die Rolle der Textkohärenz beschreiben. Dieses Thema machst du in deinem Text noch nicht auf. Gehe darauf ein und verbinde die Textkohärenz mit dem Construction-Integration Modell.
+* Du sprichst noch nicht über den Surface Code und die Textbasis. Beschreibe beide Konzepte und integriere diese in das Construction-Integration Modell. 
+
+
