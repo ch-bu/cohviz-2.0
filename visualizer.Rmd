@@ -23,7 +23,7 @@ library(tm)
 my_language = "de"
 
 # File path
-sample_file = "sample_texts/lesen02.txt"
+sample_file = "sample_texts/selbstkonzept_exp2.txt"
 
 # Collapse stop words
 stopwords <- paste(stopwords(kind = my_language), 
@@ -50,14 +50,23 @@ sample_text_parsed <- spacy_parse(sample_text, lemma = FALSE)
 sample_filtered <- sample_text_parsed %>% 
   filter(pos %in% c("NOUN", "PROPN"))
 
-# Get lemma from words
-lemmas <- sample_filtered %>% 
-  left_join(lemma_lookup, by = "token", copy = TRUE) %>%
-  mutate(
-    lemma = coalesce(lemma, token)
-  ) %>%
-  filter(!lemma %in% c("/", "–")) %>%
-  select(sentence_id, lemma)
+if (my_language == "de") {
+  # Get lemma from words
+  lemmas <- sample_filtered %>% 
+    left_join(lemma_lookup, by = "token", copy = TRUE) %>%
+    mutate(
+      lemma = coalesce(lemma, token)
+    ) %>%
+    filter(!lemma %in% c("/", "–")) %>%
+    select(sentence_id, lemma) %>%
+    mutate(
+      in_upper = grepl("^[[:upper:]]{1}", lemma)
+    ) %>%
+    filter(in_upper == TRUE)
+} else {
+  lemmas <- sample_filtered %>%
+    select(sentence_id, lemma)
+}
 
 # Generate bigrams 
 sample_dataframe <- sample_text %>%
@@ -107,13 +116,13 @@ get_n_gram <- function(n) {
   return(return_values)
 }
 
-bigrams  <- get_n_gram(2)
-trigrams <- get_n_gram(3)
+# bigrams  <- get_n_gram(2)
+# trigrams <- get_n_gram(3)
 
-# Generate bigrams 
-lemmas <- lemmas %>%
-  rbind(bigrams) %>%
-  rbind(trigrams)
+# # Generate bigrams 
+# lemmas <- lemmas %>%
+#   rbind(bigrams) %>%
+#   rbind(trigrams)
 ```
 
 
