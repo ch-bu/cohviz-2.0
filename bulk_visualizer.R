@@ -26,8 +26,8 @@ stopwords <- tibble(word = stopwords::stopwords(language = "de",
 # https://github.com/michmech/lemmatization-lists
 lemma_lookup <- read_delim("lemmatization-de_noun.txt", delim = "\t") %>%
   set_names(c("lemma", "word"))
-lemma_lookup$lemma <- lemma_lookup$lemma %>% str_to_lower()
-lemma_lookup$word <- lemma_lookup$word %>% str_to_lower()
+# lemma_lookup$lemma <- lemma_lookup$lemma %>% str_to_lower()
+# lemma_lookup$word <- lemma_lookup$word %>% str_to_lower()
 
 # Get all txt files
 txt_files <- dir_ls("texts/", glob = "*.txt", recursive = TRUE)
@@ -43,16 +43,21 @@ process_text <- function(path) {
   
   # Tidy text
   tidy_text <- sentences %>%
-    unnest_tokens(word, text) %>%
-    anti_join(stopwords, by = "word") %>%
+    unnest_tokens(word, text, to_lower = FALSE) %>%
     left_join(lemma_lookup, by = "word") %>%
     mutate(
-      lemma = coalesce(lemma, word)
-    )
+      lemma = coalesce(lemma, word),
+      uppercase = grepl("^[A-Z]", lemma)
+    ) %>%
+    dplyr::filter(uppercase == TRUE) %>%
+    mutate(
+      word = tolower(lemma)
+    ) %>%
+    anti_join(stopwords, by = "word")
   
   # Build pairs
   pairs <- pairwise_count(tidy_text, 
-                          item = lemma, 
+                          item = word, 
                           feature = line,
                           sort = TRUE) %>%
     dplyr::filter(n > 1)
