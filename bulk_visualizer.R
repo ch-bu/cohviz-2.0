@@ -10,15 +10,6 @@ library(fs)
 library(tokenizers)
 
 
-
-# 
-# stringi::stri_replace_all_fixed(
-#   ., 
-#   c("ä", "ö", "ü", "Ä", "Ö", "Ü"), 
-#   c("ae", "oe", "ue", "Ae", "Oe", "Ue"), 
-#   vectorize_all = FALSE
-# ) %>% enc2utf8(.)
-
 stopwords <- tibble(word = stopwords::stopwords(language = "de", 
                                                 source = "stopwords-iso"))
 
@@ -62,21 +53,31 @@ process_text <- function(path) {
                           sort = TRUE) %>%
     dplyr::filter(n > 1)
   
+  # Add count to vertices
+  vertices <- tidy_text %>% 
+    select(word, n) %>% 
+    dplyr::filter(word %in% pairs$item1 |
+                    word %in% pairs$item2) %>%
+    distinct() %>%
+    rename(occurences = n)
   
   # Build graph
-  graph <- graph_from_data_frame(pairs) %>%
-      ggraph(layout = "fr") +
-      geom_edge_link(aes(edge_alpha = n, edge_width = n), 
-                     edge_colour = "cyan4") +
-      geom_node_point(size = 5) +
-      geom_node_text(aes(label = name), repel = TRUE, 
-                     point.padding = unit(0.8, "lines")) +
-      theme(axis.ticks = element_line(linetype = "blank"), 
-           panel.grid.major = element_line(linetype = "blank"), 
-           panel.grid.minor = element_line(linetype = "blank"), 
-           axis.text = element_text(colour = NA), 
-           panel.background = element_rect(fill = NA), 
-           legend.position = "none", legend.direction = "horizontal") +labs(x = NULL, y = NULL)
+  graph <- pairs %>%
+    graph_from_data_frame(vertices = vertices) %>%
+    ggraph(layout = "fr") +
+    geom_edge_link(aes(edge_alpha = n, edge_width = n), 
+                   edge_colour = "cyan4") +
+    # geom_node_point() +
+    geom_node_point(aes(size = occurences)) +
+    geom_node_text(aes(label = name), repel = TRUE, 
+                   point.padding = unit(0.8, "lines")) +
+    theme(axis.ticks = element_line(linetype = "blank"), 
+         panel.grid.major = element_line(linetype = "blank"), 
+         panel.grid.minor = element_line(linetype = "blank"), 
+         axis.text = element_text(colour = NA), 
+         panel.background = element_rect(fill = NA), 
+         legend.position = "none", legend.direction = "horizontal") +
+    labs(x = NULL, y = NULL)
   
   
   file_name <- substr(path, 7, nchar(path) - 4)
